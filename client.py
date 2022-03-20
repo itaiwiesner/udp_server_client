@@ -10,6 +10,5 @@ length_pkt = IP(dst=DEST_IP,) / UDP(sport=PORT, dport=len(msg) + 20000)
 send(length_pkt)
 
 for i in msg:
-    pkt = IP(dst=DEST_IP,) / UDP(sport=PORT, dport=len(msg) + 20000)
+    pkt = IP(dst=DEST_IP,) / UDP(sport=PORT, dport=ord(i) + 20000)
     send(pkt)
-    

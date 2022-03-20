@@ -5,7 +5,7 @@ from scapy.sendrecv import sniff
 
 def filter_port(pkt):
     """ This function return True if the packet's destination port is valid """
-    return 20000 <= pkt[UDP].dport <= 20256
+    return UDP in pkt and 20000 <= pkt[UDP].dport <= 20256
 
 
 length = sniff(count=1, lfilter=filter_port)[0].dport - 2000
