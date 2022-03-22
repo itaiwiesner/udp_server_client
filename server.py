@@ -9,12 +9,12 @@ def filter_port(pkt):
 
 
 length = sniff(count=1, lfilter=filter_port)[0].dport - 20000
-print(length)
 msg = []
 for _ in range(length):
-    print(msg)
-    msg.append(chr(sniff(count=1, lfilter=filter_port)[0].dport - 20000))
+    char = sniff(count=1, lfilter=filter_port, timeout=1)
+    if len(char) == 0:
+        break
+    msg.append(chr(char[0][UDP].dport - 20000))
 
-print('out')
 for i in msg:
     print(i, end='')
